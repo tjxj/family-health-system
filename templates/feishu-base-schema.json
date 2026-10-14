@@ -1,0 +1,756 @@
+{
+  "tables": [
+    {
+      "name": "members",
+      "name_cn": "家庭成员",
+      "fields": [
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "性别",
+          "type": "select",
+          "options": [
+            "男",
+            "女"
+          ]
+        },
+        {
+          "name": "过敏史",
+          "type": "text"
+        },
+        {
+          "name": "慢病/基础病",
+          "type": "text"
+        },
+        {
+          "name": "出生日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "关系",
+          "type": "select",
+          "options": [
+            "本人",
+            "女儿",
+            "配偶",
+            "父亲",
+            "母亲"
+          ]
+        },
+        {
+          "name": "姓名",
+          "type": "text"
+        },
+        {
+          "name": "血型",
+          "type": "select",
+          "options": [
+            "A",
+            "B",
+            "O",
+            "AB",
+            "未知"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "reports",
+      "name_cn": "报告档案",
+      "fields": [
+        {
+          "name": "机构",
+          "type": "text"
+        },
+        {
+          "name": "临床诊断",
+          "type": "text"
+        },
+        {
+          "name": "报告日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "异常项数",
+          "type": "number",
+          "style": {
+            "percentage": false,
+            "precision": 0,
+            "thousands_separator": false,
+            "type": "plain"
+          }
+        },
+        {
+          "name": "report_id",
+          "type": "auto_number"
+        },
+        {
+          "name": "云盘链接",
+          "type": "text"
+        },
+        {
+          "name": "报告类型",
+          "type": "select",
+          "options": [
+            "血常规",
+            "CRP",
+            "尿常规",
+            "肝功",
+            "肾功",
+            "血脂",
+            "血糖",
+            "甲功",
+            "影像",
+            "体检套餐",
+            "其他"
+          ]
+        },
+        {
+          "name": "报告人",
+          "type": "link",
+          "link_table": "members",
+          "bidirectional": false
+        },
+        {
+          "name": "原始报告",
+          "type": "attachment"
+        },
+        {
+          "name": "状态",
+          "type": "select",
+          "options": [
+            "待解读",
+            "已解读",
+            "需复查",
+            "已闭环"
+          ]
+        },
+        {
+          "name": "解读文档链接",
+          "type": "text"
+        },
+        {
+          "name": "标本类型",
+          "type": "text"
+        },
+        {
+          "name": "科室",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "lab_indicators",
+      "name_cn": "指标库",
+      "fields": [
+        {
+          "name": "指标名称",
+          "type": "text"
+        },
+        {
+          "name": "报告人",
+          "type": "link",
+          "link_table": "members",
+          "bidirectional": false
+        },
+        {
+          "name": "数值（文本）",
+          "type": "text"
+        },
+        {
+          "name": "参考上限",
+          "type": "number",
+          "style": {
+            "percentage": false,
+            "precision": 3,
+            "thousands_separator": false,
+            "type": "plain"
+          }
+        },
+        {
+          "name": "参考范围",
+          "type": "text"
+        },
+        {
+          "name": "参考下限",
+          "type": "number",
+          "style": {
+            "percentage": false,
+            "precision": 3,
+            "thousands_separator": false,
+            "type": "plain"
+          }
+        },
+        {
+          "name": "重点关注",
+          "type": "checkbox"
+        },
+        {
+          "name": "单位",
+          "type": "text"
+        },
+        {
+          "name": "指标类别",
+          "type": "select",
+          "options": [
+            "血常规",
+            "尿常规",
+            "肝功",
+            "肾功",
+            "血脂",
+            "血糖",
+            "甲功",
+            "其他"
+          ]
+        },
+        {
+          "name": "异常状态",
+          "type": "select",
+          "options": [
+            "正常",
+            "偏高",
+            "偏低",
+            "阴性",
+            "阳性"
+          ]
+        },
+        {
+          "name": "检测日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "关联报告",
+          "type": "link",
+          "link_table": "reports",
+          "bidirectional": false
+        },
+        {
+          "name": "lab_id",
+          "type": "auto_number"
+        },
+        {
+          "name": "数值（数字）",
+          "type": "number",
+          "style": {
+            "percentage": false,
+            "precision": 3,
+            "thousands_separator": false,
+            "type": "plain"
+          }
+        }
+      ]
+    },
+    {
+      "name": "encounters",
+      "name_cn": "就诊记录",
+      "fields": [
+        {
+          "name": "日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "关联报告",
+          "type": "link",
+          "link_table": "reports",
+          "bidirectional": false
+        },
+        {
+          "name": "机构",
+          "type": "text"
+        },
+        {
+          "name": "就诊原因",
+          "type": "text"
+        },
+        {
+          "name": "录音链接",
+          "type": "text"
+        },
+        {
+          "name": "医嘱",
+          "type": "text"
+        },
+        {
+          "name": "就诊人",
+          "type": "link",
+          "link_table": "members",
+          "bidirectional": false
+        },
+        {
+          "name": "encounter_id",
+          "type": "auto_number"
+        },
+        {
+          "name": "纪要链接",
+          "type": "text"
+        },
+        {
+          "name": "费用",
+          "type": "number",
+          "style": {
+            "currency_code": "CNY",
+            "precision": 2,
+            "type": "currency"
+          }
+        },
+        {
+          "name": "诊断",
+          "type": "text"
+        },
+        {
+          "name": "医生",
+          "type": "text"
+        },
+        {
+          "name": "复查计划",
+          "type": "link",
+          "link_table": "checkup_schedule",
+          "bidirectional": false
+        },
+        {
+          "name": "关联用药",
+          "type": "link",
+          "link_table": "medications",
+          "bidirectional": false
+        },
+        {
+          "name": "科室",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "medications",
+      "name_cn": "用药记录",
+      "fields": [
+        {
+          "name": "开始日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "用药人",
+          "type": "link",
+          "link_table": "members",
+          "bidirectional": false
+        },
+        {
+          "name": "服用时间",
+          "type": "select",
+          "options": [
+            "饭前",
+            "饭后",
+            "睡前",
+            "空腹",
+            "不限"
+          ]
+        },
+        {
+          "name": "频次",
+          "type": "text"
+        },
+        {
+          "name": "来源",
+          "type": "select",
+          "options": [
+            "医院处方",
+            "药店自购",
+            "既往剩余"
+          ]
+        },
+        {
+          "name": "剂量",
+          "type": "text"
+        },
+        {
+          "name": "通用名/成分",
+          "type": "text"
+        },
+        {
+          "name": "结束日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "开药原因",
+          "type": "text"
+        },
+        {
+          "name": "关联就诊",
+          "type": "link",
+          "link_table": "encounters",
+          "bidirectional": false
+        },
+        {
+          "name": "剂型",
+          "type": "select",
+          "options": [
+            "口服片",
+            "颗粒",
+            "口服液",
+            "鼻喷雾",
+            "滴眼液",
+            "外用",
+            "注射"
+          ]
+        },
+        {
+          "name": "状态",
+          "type": "select",
+          "options": [
+            "在服",
+            "已停药"
+          ]
+        },
+        {
+          "name": "药品名称",
+          "type": "text"
+        },
+        {
+          "name": "效果",
+          "type": "select",
+          "options": [
+            "有效",
+            "部分有效",
+            "无效",
+            "有副作用"
+          ]
+        },
+        {
+          "name": "med_id",
+          "type": "auto_number"
+        }
+      ]
+    },
+    {
+      "name": "symptoms",
+      "name_cn": "症状日记",
+      "fields": [
+        {
+          "name": "关联就诊",
+          "type": "link",
+          "link_table": "encounters",
+          "bidirectional": false
+        },
+        {
+          "name": "处置",
+          "type": "select",
+          "options": [
+            "观察",
+            "对症吃药",
+            "已就医"
+          ]
+        },
+        {
+          "name": "严重程度",
+          "type": "select",
+          "options": [
+            "轻",
+            "中",
+            "重"
+          ]
+        },
+        {
+          "name": "报告人",
+          "type": "link",
+          "link_table": "members",
+          "bidirectional": false
+        },
+        {
+          "name": "symptom_id",
+          "type": "auto_number"
+        },
+        {
+          "name": "状态",
+          "type": "select",
+          "options": [
+            "进行中",
+            "已缓解"
+          ]
+        },
+        {
+          "name": "图片/录音",
+          "type": "attachment"
+        },
+        {
+          "name": "症状",
+          "type": "select",
+          "options": [
+            "发热",
+            "咳嗽",
+            "鼻塞",
+            "流涕",
+            "喘息",
+            "呕吐",
+            "腹泻",
+            "皮疹",
+            "头痛",
+            "腹痛",
+            "其他"
+          ],
+          "multiple": true
+        },
+        {
+          "name": "开始时间",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd HH:mm"
+          }
+        },
+        {
+          "name": "描述",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "vaccinations",
+      "name_cn": "疫苗接种",
+      "fields": [
+        {
+          "name": "vac_id",
+          "type": "auto_number"
+        },
+        {
+          "name": "凭证",
+          "type": "attachment"
+        },
+        {
+          "name": "下次剂次日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "不良反应",
+          "type": "text"
+        },
+        {
+          "name": "剂次",
+          "type": "text"
+        },
+        {
+          "name": "疫苗名称",
+          "type": "text"
+        },
+        {
+          "name": "接种日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "接种机构",
+          "type": "text"
+        },
+        {
+          "name": "接种人",
+          "type": "link",
+          "link_table": "members",
+          "bidirectional": false
+        }
+      ]
+    },
+    {
+      "name": "checkup_schedule",
+      "name_cn": "检查计划",
+      "fields": [
+        {
+          "name": "项目",
+          "type": "text"
+        },
+        {
+          "name": "关联就诊",
+          "type": "link",
+          "link_table": "encounters",
+          "bidirectional": false
+        },
+        {
+          "name": "状态",
+          "type": "select",
+          "options": [
+            "待办",
+            "已完成",
+            "已延期",
+            "已取消"
+          ]
+        },
+        {
+          "name": "计划日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "plan_id",
+          "type": "auto_number"
+        },
+        {
+          "name": "关联报告",
+          "type": "link",
+          "link_table": "reports",
+          "bidirectional": false
+        },
+        {
+          "name": "提前提醒",
+          "type": "select",
+          "options": [
+            "当天",
+            "1天",
+            "3天",
+            "1周",
+            "2周"
+          ]
+        },
+        {
+          "name": "事项类型",
+          "type": "select",
+          "options": [
+            "复查",
+            "年度体检",
+            "专科检查",
+            "疫苗",
+            "过敏季备药"
+          ]
+        },
+        {
+          "name": "计划人",
+          "type": "link",
+          "link_table": "members",
+          "bidirectional": false
+        }
+      ]
+    },
+    {
+      "name": "family_history",
+      "name_cn": "家族病史",
+      "fields": [
+        {
+          "name": "风险提示",
+          "type": "text"
+        },
+        {
+          "name": "fh_id",
+          "type": "auto_number"
+        },
+        {
+          "name": "亲属关系",
+          "type": "select",
+          "options": [
+            "父亲",
+            "母亲",
+            "兄弟姐妹",
+            "祖父母",
+            "外祖父母"
+          ]
+        },
+        {
+          "name": "亲属姓名",
+          "type": "text"
+        },
+        {
+          "name": "疾病",
+          "type": "select",
+          "options": [
+            "高血压",
+            "糖尿病",
+            "冠心病",
+            "脑卒中",
+            "肿瘤",
+            "痛风",
+            "过敏哮喘",
+            "精神疾病",
+            "其他"
+          ],
+          "multiple": true
+        },
+        {
+          "name": "确诊年龄",
+          "type": "number",
+          "style": {
+            "percentage": false,
+            "precision": 0,
+            "thousands_separator": false,
+            "type": "plain"
+          }
+        },
+        {
+          "name": "现状",
+          "type": "select",
+          "options": [
+            "健在",
+            "已故"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "health_goals",
+      "name_cn": "年度目标",
+      "fields": [
+        {
+          "name": "对象",
+          "type": "link",
+          "link_table": "members",
+          "bidirectional": false
+        },
+        {
+          "name": "年度健康目标",
+          "type": "text"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "goal_id",
+          "type": "auto_number"
+        },
+        {
+          "name": "年度",
+          "type": "text"
+        },
+        {
+          "name": "体重/血压目标",
+          "type": "text"
+        },
+        {
+          "name": "风险项",
+          "type": "select",
+          "options": [
+            "尿酸临界",
+            "体重",
+            "过敏",
+            "其他"
+          ],
+          "multiple": true
+        }
+      ]
+    }
+  ]
+}
